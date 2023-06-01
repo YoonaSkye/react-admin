@@ -7,14 +7,14 @@ enum API {
   LOGOUT_URL = '/admin/acl/index/logout',
 }
 
-interface LoginFormData {
+export interface LoginFormData {
   username: string;
   password: string;
 }
 
 type Token = string;
 
-interface UserInfo {
+export interface UserInfo {
   routes: string[];
   buttons: string[];
   roles: string[];
