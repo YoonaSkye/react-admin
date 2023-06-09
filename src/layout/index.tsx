@@ -2,14 +2,13 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout, theme } from 'antd';
 
+import AuthRouter from '@/router/components/AuthRouter';
 import LayoutHeader from './components/Header';
 import LayoutMenu from './components/Menu';
-import { useCombinedStore } from '@/store';
 
 const { Sider, Content, Header } = Layout;
 const LayoutIndex = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const updateToken = useCombinedStore((state) => state.updateToken);
 
   return (
     <div className="layout_container" style={{ height: 100 }}>
@@ -20,7 +19,6 @@ const LayoutIndex = () => {
         <Layout>
           <LayoutHeader />
           <Content style={{ margin: '0 16px' }}>
-            <button onClick={updateToken}>token</button>
             <Outlet />
           </Content>
         </Layout>
@@ -29,4 +27,12 @@ const LayoutIndex = () => {
   );
 };
 
-export default LayoutIndex;
+const AuthLayout = () => {
+  return (
+    <AuthRouter>
+      <LayoutIndex />
+    </AuthRouter>
+  );
+};
+
+export default AuthLayout;
