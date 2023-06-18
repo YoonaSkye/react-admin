@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { message } from 'antd';
+import useCombinedStore from '@/store';
 
 const request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
@@ -9,6 +10,10 @@ const request = axios.create({
 request.interceptors.request.use(
   (config) => {
     //获取用户相关的小仓库:获取仓库内部token,登录成功以后携带给服务器
+    const token = useCombinedStore.getState().token;
+    if (token) {
+      config.headers.token = token;
+    }
     return config;
   },
   (error) => {

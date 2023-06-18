@@ -7,11 +7,7 @@ import { LoginFormData } from '@/api/user';
 const testUsers: LoginFormData[] = [
   {
     username: 'admin',
-    password: 'atguigu123',
-  },
-  {
-    username: '',
-    password: '',
+    password: '123456',
   },
 ];
 
@@ -21,12 +17,12 @@ const LoginForm = () => {
   const location = useLocation();
   const [form] = Form.useForm();
 
-  const from = location.state.from.pathname || '/';
+  const from = location.state?.from?.pathname || '/home/index';
 
   const onFinish = async (values: LoginFormData) => {
     try {
       await userLogin(values);
-      navigate(from, { replace: true });
+      navigate('/home/index');
       message.success('登录成功');
     } catch (error) {
       message.error('账号或者密码错误');

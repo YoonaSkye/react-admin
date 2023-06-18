@@ -20,12 +20,11 @@ type MyMiddlewares = <
 >;
 
 const myMiddlewares = ((f) =>
-  devtools(persist(f, { name: 'bound-store' }), {
-    name: 'prefix',
-  })) as MyMiddlewares;
+  devtools(persist(f, { name: 'bound-store' }))) as MyMiddlewares;
 
-export const useCombinedStore = create<CombinedState>()(
+const useCombinedStore = create<CombinedState>()(
   myMiddlewares((...a) => ({
     ...createUserSlice(...a),
   }))
 );
+export default useCombinedStore;

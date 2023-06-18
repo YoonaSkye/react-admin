@@ -4,11 +4,14 @@ import '@/styles/index.scss';
 // 路由
 import { BrowserRouter as Router } from 'react-router-dom';
 import PrivateRouter from './router/PrivateRouter';
+import AuthRouter from './router/AuthRouter';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   // <React.StrictMode>
   <Router>
-    <PrivateRouter />
+    <AuthRouter>
+      <PrivateRouter />
+    </AuthRouter>
   </Router>
   // </React.StrictMode>
 );

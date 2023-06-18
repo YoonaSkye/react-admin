@@ -3,7 +3,7 @@ import { useRoutes, Navigate, RouteObject } from 'react-router-dom';
 import Login from '@/views/login/Login';
 import LayoutIndex from '@/layout/LayoutIndex';
 import NotFound from '@/views/404';
-import { menulist } from './test';
+import useCombinedStore from '@/store';
 
 interface MenuList {
   icon?: string;
@@ -48,6 +48,9 @@ const generateRouter = (menuList: MenuList[]): RouteObject[] => {
 };
 
 const PrivateRouter = () => {
+  const menulist = useCombinedStore((store) => store.menuInfo);
+  // console.log(generateRouter(menulist));
+
   return useRoutes([
     {
       path: '/',

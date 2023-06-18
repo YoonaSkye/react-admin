@@ -1,10 +1,11 @@
 //统一管理项目用户相关的接口
 import request from '@/utils/request';
+import type { MenuOptions } from '@/store/types/type';
 
 enum API {
-  LOGIN_URL = '/admin/acl/index/login',
-  USERINFO_URL = '/admin/acl/index/info',
-  LOGOUT_URL = '/admin/acl/index/logout',
+  LOGIN_URL = '/users/login',
+  USERINFO_URL = '/users/infos',
+  LOGOUT_URL = '',
 }
 
 export interface LoginFormData {
@@ -12,21 +13,22 @@ export interface LoginFormData {
   password: string;
 }
 
-type Token = string;
+type Token = {
+  access_token: string;
+};
 
 export interface UserInfo {
-  routes: string[];
-  buttons: string[];
-  roles: string[];
-  name: string;
+  username: string;
   avatar: string;
+  menuInfo: MenuOptions[];
+  buttons: string[];
+  roles?: string[];
 }
 
 interface ResponseData<T> {
   code: number;
-  data: T;
+  data?: T;
   message: string;
-  ok: boolean;
 }
 
 // 登录接口

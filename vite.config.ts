@@ -2,13 +2,12 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { viteMockServe } from 'vite-plugin-mock';
-import eslintPlugin from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
 /** @type {import('vite').UserConfig} */
 export default defineConfig(({ command, mode }) => {
   //获取各种环境下的对应的变量
-  let env = loadEnv(mode, process.cwd());
+  const env = loadEnv(mode, process.cwd());
   return {
     plugins: [react(), viteMockServe({ mockPath: 'mock' })],
     resolve: {
