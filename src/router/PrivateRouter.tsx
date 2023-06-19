@@ -40,7 +40,9 @@ const generateRouter = (menuList: MenuList[]): RouteObject[] => {
     } else {
       arr.push({
         path: item.path,
-        element: lazyLoad(lazy(() => import(`../views${item.path}`))),
+        element: lazyLoad(
+          lazy(() => import(/* @vite-ignore */ `../views${item.path}`))
+        ),
       });
     }
   });
@@ -49,18 +51,14 @@ const generateRouter = (menuList: MenuList[]): RouteObject[] => {
 
 const PrivateRouter = () => {
   const menulist = useCombinedStore((store) => store.menuInfo);
-  // console.log(generateRouter(menulist));
 
   return useRoutes([
-    {
-      path: '/',
-      element: <Navigate to="/login" />,
-    },
     {
       path: '/login',
       element: <Login />,
     },
     {
+      path: '/',
       element: <LayoutIndex />,
       children: generateRouter(menulist),
     },
