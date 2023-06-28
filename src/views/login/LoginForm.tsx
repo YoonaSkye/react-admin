@@ -22,7 +22,7 @@ const LoginForm = () => {
   const onFinish = async (values: LoginFormData) => {
     try {
       await userLogin(values);
-      navigate('/home/index');
+      navigate('/');
       message.success('登录成功');
     } catch (error) {
       message.error('账号或者密码错误');

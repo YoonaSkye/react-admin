@@ -10,11 +10,13 @@ import {
 } from 'antd';
 import type { MenuProps } from 'antd';
 import {
+  MenuUnfoldOutlined,
   MenuFoldOutlined,
   BellOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import BreadcrumbNav from './components/BreadcrumbNav';
+import useCombinedStore from '@/store';
 
 const { Header } = Layout;
 
@@ -34,6 +36,8 @@ const items: MenuProps['items'] = [
 ];
 
 const LayoutHeader = () => {
+  const setCollapsed = useCombinedStore((store) => store.setCollapsed);
+  const collapsed = useCombinedStore((store) => store.collapsed);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -44,16 +48,14 @@ const LayoutHeader = () => {
           <Row align="middle">
             <Button
               type="text"
-              // icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              icon={<MenuFoldOutlined />}
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
               onClick={() => {
-                console.log('折叠');
-                // setCollapsed(!collapsed)
+                setCollapsed(!collapsed);
               }}
               style={{
                 fontSize: '16px',
-                width: 64,
-                height: 64,
+                width: 50,
+                height: 50,
               }}
             />
             <BreadcrumbNav />

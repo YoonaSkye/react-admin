@@ -20,12 +20,18 @@ const createUserSlice: StateCreator<
   [['zustand/devtools', never]],
   [],
   UserSlice
-> = (set) => ({
+> = (set, get) => ({
   token: '',
   username: '',
   avatar: '',
   menuInfo: [], //仓库存储生成菜单需要数组(路由)
   buttons: [],
+  collapsed: false,
+  setCollapsed: (coll) => {
+    set({
+      collapsed: coll,
+    });
+  },
   clearAll: () => {
     set({
       token: '',

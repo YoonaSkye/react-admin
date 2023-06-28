@@ -15,9 +15,11 @@ export interface UserSlice {
   avatar: string;
   menuInfo: MenuOptions[]; //仓库存储生成菜单需要数组(路由)
   buttons: string[];
+  collapsed: boolean;
   userLogin: (data: LoginFormData) => void;
   userInfo: () => void;
   userLogout?: () => void;
+  setCollapsed: (collapsed: boolean) => void;
 }
 
 export type CombinedState = UserSlice;
